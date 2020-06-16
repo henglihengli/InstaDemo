@@ -1,1 +1,8 @@
-Hello World!
+<div>
+    Hello World!
+</div>
+<div>
+    {% for post in object_list %}
+        <img src = "{{post.image.url}}">
+    {% endfor %}
+</div>

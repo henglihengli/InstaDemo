@@ -11,13 +11,4 @@ class Post(models.Model):
         blank = True,
         null = True,
     )
-
-class PostTwo(models.Model):
-    title = models.TextField(blank = True, null = True)
-    image = ProcessedImageField(
-        upload_to = 'static/images/posts',
-        format = 'JPEG',
-        options = {'quality' : 100},
-        blank = True,
-        null = True,
-    )
+    
