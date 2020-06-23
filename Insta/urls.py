@@ -18,13 +18,15 @@ from django.urls import include, path
 from . import views
 
 from Insta.views import (HelloDjango, PostsView, PostDetailView, PostCreateView,
-                         PostUpdateView, PostDeleteView)
+                         PostUpdateView, PostDeleteView, UserDetailView, addLike)
 
 urlpatterns = [
-    path('', views.HelloDjango.as_view(), name = 'hello_django'),
-    path('posts/', PostsView.as_view(), name = 'posts'),
+    path('hello_django/', views.HelloDjango.as_view(), name = 'hello_django'),
+    path('', PostsView.as_view(), name = 'posts'),
     path('post/<int:pk>/', PostDetailView.as_view(), name = 'post_detail'),
     path('posts/new/', PostCreateView.as_view(), name = 'make_post'),
     path('post/update/<int:pk>/', PostUpdateView.as_view(), name = 'post_update'),
     path('post/delete/<int:pk>/', PostDeleteView.as_view(), name = 'post_delete'),
+    path('like', addLike, name = 'addLike'),
+    path('user/<int:pk>/', UserDetailView.as_view(), name = 'user_detail'),
 ]
