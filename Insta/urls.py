@@ -17,16 +17,24 @@ from django.contrib import admin
 from django.urls import include, path
 from . import views
 
-from Insta.views import (HelloDjango, PostsView, PostDetailView, PostCreateView,
-                         PostUpdateView, PostDeleteView, UserDetailView, addLike)
+from Insta.views import (EditProfile, ExploreView, PostCreateView,
+                         PostDeleteView, PostDetailView, PostListView,
+                         PostUpdateView, SignUp, UserProfile, addComment,
+                         addLike, toggleFollow, FollowersView, FollowingsView)
 
 urlpatterns = [
-    path('hello_django/', views.HelloDjango.as_view(), name = 'hello_django'),
-    path('', PostsView.as_view(), name = 'posts'),
-    path('post/<int:pk>/', PostDetailView.as_view(), name = 'post_detail'),
-    path('posts/new/', PostCreateView.as_view(), name = 'make_post'),
-    path('post/update/<int:pk>/', PostUpdateView.as_view(), name = 'post_update'),
-    path('post/delete/<int:pk>/', PostDeleteView.as_view(), name = 'post_delete'),
-    path('like', addLike, name = 'addLike'),
-    path('user/<int:pk>/', UserDetailView.as_view(), name = 'user_detail'),
+    path('home', PostListView.as_view(), name='home'),
+    path('post/<int:pk>/', PostDetailView.as_view(), name='post'),
+    path('post/new/', PostCreateView.as_view(), name='make_post'),
+    path('post/update/<int:pk>', PostUpdateView.as_view(), name='post_update'),
+    path('post/delete/<int:pk>', PostDeleteView.as_view(), name='post_delete'),
+    path('auth/signup', SignUp.as_view(), name='signup'),
+    path('user_profile/<int:pk>/', UserProfile.as_view(), name='profile'),
+    path('edit_profile/<int:pk>/', EditProfile.as_view(), name='edit_profile'),
+    path('togglefollow', toggleFollow, name='togglefollow'),
+    path('like', addLike, name='addLike'),
+    path('comment', addComment, name='addComment'),
+    path('explore', ExploreView.as_view(), name='explore'),
+    path('followers/<int:pk>', FollowersView.as_view(), name = 'followers'),
+    path('followings/<int:pk>', FollowingsView.as_view(), name = 'followings'),
 ]
